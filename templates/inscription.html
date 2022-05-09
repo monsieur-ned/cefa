@@ -1,0 +1,178 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block header %}
+<div class="container-xxl py-2 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Inscription</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Inscription</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container-xxl my-5">
+    <div class="container">
+
+    	<div class="row py-3">
+            <div class="col-md-6 offset-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                {% if messages %}
+                        {% for message in messages %}
+
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Erreur !</strong> {{message}}
+                                        <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button> -->
+                                </div>
+
+                            {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                      <strong>Reussie !</strong> {{message}}
+                                      <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button> -->
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endif %}
+            </div>
+        </div>
+
+        <div class="row py-3">
+            <div class="col-md-6 offset-md-3 wow fadeInUp block-titre" data-wow-delay="0.1s">
+                <h5>CONDITIONS D'INSCRIPTION</h5>
+            </div>
+        </div>
+    
+
+	    <div class="row py-3">
+	        <!-- <div class="col-md-6 offset-md-3 wow fadeInUp" data-wow-delay="0.1s">
+	            <div class="accordion accordion-flush" id="accordionFlushExample"> 
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne" style="background-color: #fff;"> 
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> Accordion Item #1 </button> 
+                        </h2>
+
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" > 
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the 
+                                <code>.accordion-flush</code> class. This is the first item's accordion body.
+                            </div> 
+                        </div> 
+                    </div> 
+
+                    </div>
+                </div>
+	        </div> -->
+
+	        <div class="col-md-6 offset-md-3 wow fadeInUp py-3" data-wow-delay="0.1s" style="border: 1px solid black; border-radius: 10px;">
+	            <h6 class="mx-3">Dossier à fournir en presentiel</h6>
+	            <ul>
+	                <li><span>01</span> Formulaire fourni par le CEFA</li>
+	                <li><span>02</span> Photos identité en couleur</li>
+	                <li><span>01</span> Photocopie d'acte de naissance</li>
+	                <li><span>01</span> Photocopie légalisée du dernier diplôme ou Attestion de Niveau</li>
+	                <li><span>01</span> Enveloppe kaki A4</li>
+	                <li>Frais d'etude du dossier <span>5000Fcfa</span></li>
+	                <li><span>01</span> Formulaire fourni par le CEFA</li>
+	            </ul>
+	        </div>
+	    </div>
+
+	    <div class="row py-3">
+                    <div class="col-md-6 offset-md-3 wow fadeInUp py-3" data-wow-delay="0.1s">
+
+                    </div>
+
+                    <div class="col-md-6 offset-md-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <form method="POST" id="form-inscription">
+                            {% csrf_token %}
+                            <div class="form-group my-2">
+                                <label class="form-label">Nom(s)</label>
+                                <input class="form-control" placeholder="Votre nom de famille" type="text" name="nom">
+                            </div>
+
+                            <div class="form-group my-2">
+                                <label class="form-label">Prénom(s)</label>
+                                <input class="form-control" placeholder="Votre prénom" type="text" name="prenom">
+                            </div>
+
+                            <div class="form-group my-2">
+                                <label class="form-label">Date de naissance</label>
+                                <input class="form-control" type="date" name="dateNais">
+                            </div>
+
+                            <div class="form-group my-2">
+                                <label class="form-label">Vous êtes ? </label>
+
+                                <label for="homme">homme</label>
+                                <input class="" type="radio" name="genre" value="homme" id="homme">
+
+                                <label for="femme">femme</label>
+                                <input class="" type="radio" name="genre" value="femme" id="femme">
+                            </div>
+
+                            <div class="form-group my-2">
+                                <label class="form-label">Télephone</label>
+                                <input class="form-control" placeholder="Numéro de téléphone valide" type="text" name="tel">
+                            </div>
+
+                            <div class="form-group my-2">
+                                <label class="form-label">Ville</label>
+                                <input class="form-control" placeholder="Votre ville de residence" type="text" name="residence">
+                            </div>
+
+
+                            <div class="form-group my-2">
+                                <select name="cefa" class="form-select">
+                                    <option selected disabled>Choix du centre</option>
+                                    <optgroup>
+                                        <option>Brazzaville</option>
+                                        <option value="CEFA Metiers de services">CEFA Metiers de services</option>
+                                        <option value="CEFA Metiers du batîment, froid et climatisation">CEFA Metiers du batîment, froid et climatisation</option>
+                                    </optgroup>
+
+                                    <optgroup>
+                                        <option>Pointe-Noire</option>
+
+                                        <option value="CEFA Metiers de maintenance industrielle">CEFA Metiers de maintenance industrielle</option>
+
+                                        <option value="CEFA Mécanique automobile">CEFA Mécanique automobile</option>
+
+                                        <option value="CEFA Métiers de service">CEFA Métiers de service</option>
+                                    </optgroup>
+
+                                    <optgroup>
+                                        <option>Dolisie</option>
+                                        <option value="CEFA Metiers rureaux">CEFA Metiers rureaux</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="form-group my-2">
+                                <button type="submit" class="btn btn-success col-12">Envoyer</button>
+                            </div>
+
+                            <div class="form-group my-2">
+                                <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+	</div>
+</div>
+{% endblock %}
